@@ -15,7 +15,7 @@ def submit():
         'Gender': request.form['gender'],
         'Birth Year': request.form['birth_year'],
         'Student ID': request.form['student_id'],
-        'MBTI': request.form['mbti'],
+        'MBTI': ' '.join([request.form['mbti_1'], request.form['mbti_2'], request.form['mbti_3'], request.form['mbti_4']]),
         'College': request.form['college'],
         'Bedtime': request.form['bedtime'],
         'Lights Off': request.form['lights_off'],
