@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dorm Roommate Survey</title>
+    <title>기숙사 룸메이트 설문지</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,29 +60,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>Dorm Roommate Survey</h1>
+        <h1>기숙사 룸메이트 설문지</h1>
         <form action="/submit" method="post">
             <div class="form-group">
-                <label for="dormitory">Dormitory:</label>
+                <label for="dormitory">기숙사:</label>
                 <select id="dormitory" name="dormitory">
-                    <option value="Dorm A">Dorm A</option>
-                    <option value="Dorm B">Dorm B</option>
-                    <option value="Dorm C">Dorm C</option>
-                    <option value="Dorm D">Dorm D</option>
-                    <option value="Dorm E">Dorm E</option>
+                    <option value="기숙사 A">기숙사 A</option>
+                    <option value="기숙사 B">기숙사 B</option>
+                    <option value="기숙사 C">기숙사 C</option>
+                    <option value="기숙사 D">기숙사 D</option>
+                    <option value="기숙사 E">기숙사 E</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="gender">Gender:</label>
+                <label for="gender">성별:</label>
                 <select id="gender" name="gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="남">남</option>
+                    <option value="여">여</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="birth_year">Birth Year:</label>
+                <label for="birth_year">생년:</label>
                 <select id="birth_year" name="birth_year">
                     {% for year in range(1990, 2011) %}
                         <option value="{{ year }}">{{ year }}</option>
@@ -91,8 +91,12 @@
             </div>
 
             <div class="form-group">
-                <label for="student_id">Student ID:</label>
-                <input type="number" id="student_id" name="student_id" pattern="\d*" required>
+                <label for="student_id">학번:</label>
+                <select id="student_id" name="student_id">
+                    {% for year in range(10, 25) %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="form-group">
@@ -124,98 +128,179 @@
             </div>
 
             <div class="form-group">
-                <label for="college">College:</label>
+                <label for="college">단과대:</label>
                 <select id="college" name="college">
-                    <option value="Science and Engineering">Science and Engineering</option>
-                    <option value="Arts and Humanities">Arts and Humanities</option>
-                    <option value="Sports and Health">Sports and Health</option>
-                    <option value="Confidential">Confidential</option>
+                    <option value="생공">생공</option>
+                    <option value="공과">공과</option>
+                    <option value="예공">예공</option>
+                    <option value="예술">예술</option>
+                    <option value="체육">체육</option>
+                    <option value="비공개">비공개</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="bedtime">Bedtime:</label>
+                <label for="bedtime">취침시간:</label>
                 <input type="time" id="bedtime" name="bedtime">
             </div>
 
             <div class="form-group">
-                <label for="lights_off">Lights Off:</label>
+                <label for="lights_off">불 끄는 시간:</label>
                 <input type="time" id="lights_off" name="lights_off">
             </div>
 
             <div class="form-group">
-                <label for="wakeup_time">Wakeup Time:</label>
+                <label for="wakeup_time">기상시간:</label>
                 <input type="time" id="wakeup_time" name="wakeup_time">
             </div>
 
             <div class="form-group">
-                <label for="cleaning_habits">Cleaning Habits:</label>
+                <label for="cleaning_habits">방청소:</label>
                 <select id="cleaning_habits" name="cleaning_habits">
-                    <option value="As needed">As needed</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Regularly">Regularly</option>
-                    <option value="All at once">All at once</option>
+                    <option value="그때그때">그때그때</option>
+                    <option value="매일">매일</option>
+                    <option value="주기적">주기적</option>
+                    <option value="한번에">한번에</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="floor_preference">Floor Preference:</label>
+                <label for="floor_preference">바닥:</label>
                 <select id="floor_preference" name="floor_preference">
-                    <option value="Mattress">Mattress</option>
-                    <option value="Bare floor">Bare floor</option>
+                    <option value="매트깔기">매트깔기</option>
+                    <option value="그냥살기">그냥살기</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="sleep_habits">Sleep Habits:</label>
+                <label for="sleep_habits">잠버릇:</label>
                 <select id="sleep_habits" name="sleep_habits">
-                    <option value="None">None</option>
-                    <option value="Teeth grinding">Teeth grinding</option>
-                    <option value="Snoring">Snoring</option>
-                    <option value="Sleep talking">Sleep talking</option>
+                    <option value="없음">없음</option>
+                    <option value="이갈이">이갈이</option>
+                    <option value="코골이">코골이</option>
+                    <option value="잠꼬대">잠꼬대</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="sleep_sensitivity">Sleep Sensitivity (1-5):</label>
+                <label for="sleep_sensitivity">잠귀 (1-5):</label>
                 <input type="number" id="sleep_sensitivity" name="sleep_sensitivity" min="1" max="5">
             </div>
 
             <div class="form-group">
-                <label for="morning_alarm">Morning Alarm:</label>
+                <label for="morning_alarm">아침 알람:</label>
                 <select id="morning_alarm" name="morning_alarm">
-                    <option value="None">None</option>
-                    <option value="Turn off immediately">Turn off immediately</option>
-                    <option value="Need discussion">Need discussion</option>
-                    <option value="Doesn't matter">Doesn't matter</option>
+                    <option value="X">X</option>
+                    <option value="바로끄면 ㄱㅊ">바로끄면 ㄱㅊ</option>
+                    <option value="알람 시간 상의 필요">알람 시간 상의 필요</option>
+                    <option value="상관없음">상관없음</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="smoking">Smoking:</label>
+                <label for="smoking">흡연여부:</label>
                 <select id="smoking" name="smoking">
-                    <option value="No">No</option>
-                    <option value="Occasionally">Occasionally</option>
-                    <option value="Yes">Yes</option>
+                    <option value="O">O</option>
+                    <option value="X">X</option>
+                    <option value="가끔">가끔</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="drinking_frequency">Drinking Frequency:</label>
+                <label for="drinking_frequency">음주빈도:</label>
                 <select id="drinking_frequency" name="drinking_frequency">
-                    <option value="No">No</option>
-                    <option value="Often">Often</option>
-                    <option value="Sometimes">Sometimes</option>
-                    <option value="Daily">Daily</option>
+                    <option value="X">X</option>
+                    <option value="자주">자주</option>
+                    <option value="때때로">때때로</option>
+                    <option value="매일">매일</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="drinking_habits">Drinking Habits:</label>
+                <label for="drinking_habits">술 주사:</label>
                 <textarea id="drinking_habits" name="drinking_habits"></textarea>
             </div>
 
-            <input type="submit" value="Submit">
+            <div class="form-group">
+                <label for="bug_handling">벌레:</label>
+                <select id="bug_handling" name="bug_handling">
+                    <option value="못잡음">못잡음</option>
+                    <option value="작은거가능">작은거가능</option>
+                    <option value="벌레헌터">벌레헌터</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="roommate_relationship">원하는 룸메와의 관계:</label>
+                <select id="roommate_relationship" name="roommate_relationship">
+                    <option value="친함">친함</option>
+                    <option value="각자 알아서">각자 알아서</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_calls">전화통화:</label>
+                <select id="phone_calls" name="phone_calls">
+                    <option value="무조건 밖">무조건 밖</option>
+                    <option value="간단 전화 가능">간단 전화 가능</option>
+                    <option value="상관없음">상관없음</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_sound">핸드폰 소리:</label>
+                <select id="phone_sound" name="phone_sound">
+                    <option value="무조건 이어폰 착용">무조건 이어폰 착용</option>
+                    <option value="작게 유음모드 가능">작게 유음모드 가능</option>
+                    <option value="같이 노래듣기 가능">같이 노래듣기 가능</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="item_sharing">물건공유:</label>
+                <select id="item_sharing" name="item_sharing">
+                    <option value="X">X</option>
+                    <option value="허락맡고">허락맡고</option>
+                    <option value="상관없음">상관없음</option>
+                    <option value="공용물건 구비">공용물건 구비</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="indoor_dining">실내취식:</label>
+                <select id="indoor_dining" name="indoor_dining">
+                    <option value="X">X</option>
+                    <option value="환기잘하고 바로치우면 가능">환기잘하고 바로치우면 가능</option>
+                    <option value="상관없음">상관없음</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="late_night_snack">야식:</label>
+                <select id="late_night_snack" name="late_night_snack">
+                    <option value="X">X</option>
+                    <option value="별로">별로</option>
+                    <option value="중간">중간</option>
+                    <option value="좋아">좋아</option>
+                    <option value="자주">자주</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="return_frequency">귀가 주기:</label>
+                <select id="return_frequency" name="return_frequency">
+                    <option value="매주">매주</option>
+                    <option value="격주">격주</option>
+                    <option value="한 달 이상">한 달 이상</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional_notes">기타 참고 사항:</label>
+                <textarea id="additional_notes" name="additional_notes"></textarea>
+            </div>
+
+            <input type="submit" value="제출">
         </form>
     </div>
 </body>
