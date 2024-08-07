@@ -1,8 +1,19 @@
 from flask import Flask, render_template, request, send_file
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 import io
+import pdfkit
+import imgkit
 
 app = Flask(__name__)
+
+# PDFKit 설정
+pdfkit_config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')  # wkhtmltopdf 경로를 수정
+
+# IMGKit 설정
+imgkit_config = imgkit.config(wkhtmltoimage='/usr/local/bin/wkhtmltoimage')  # wkhtmltoimage 경로를 수정
+
+# 전역 변수로 결과 데이터를 저장
+global_result_data = {}
 
 @app.route('/')
 def index():
@@ -10,7 +21,8 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    data = {
+    global global_result_data
+    global_result_data = {
         '기숙사': request.form['dormitory'],
         '성별': request.form['gender'],
         '생년': request.form['birth_year'],
@@ -38,26 +50,22 @@ def submit():
         '귀가 주기': request.form['return_frequency'],
         '기타 참고 사항': request.form['additional_notes']
     }
+    return render_template('result.html', data=global_result_data)
 
-    image = create_image(data)
-    img_io = io.BytesIO()
-    image.save(img_io, 'PNG')
+@app.route('/download_image')
+def download_image():
+    rendered_html = render_template('result.html', data=global_result_data)
+    
+    # HTML을 PDF로 변환
+    pdf = pdfkit.from_string(rendered_html, False, configuration=pdfkit_config)
+    
+    # PDF를 이미지로 변환
+    img = imgkit.from_string(rendered_html, False, config=imgkit_config)
+
+    img_io = io.BytesIO(img)
     img_io.seek(0)
 
     return send_file(img_io, mimetype='image/png', download_name='survey_result.png', as_attachment=True)
-
-def create_image(data):
-    width, height = 800, 1200
-    image = Image.new('RGB', (width, height), color=(255, 255, 255))
-    draw = ImageDraw.Draw(image)
-    font = ImageFont.load_default()
-
-    y_position = 10
-    for key, value in data.items():
-        draw.text((10, y_position), f"{key}: {value}", fill=(0, 0, 0), font=font)
-        y_position += 20
-
-    return image
 
 if __name__ == '__main__':
     app.run(debug=True)

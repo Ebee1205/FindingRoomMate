@@ -49,12 +49,16 @@
         .form-group {
             margin-bottom: 15px;
         }
-        .form-group-half {
-            display: inline-block;
-            width: 48%;
+        .form-group-inline {
+            display: flex;
+            justify-content: space-between;
         }
-        .form-group-half:nth-child(odd) {
-            margin-right: 4%;
+        .form-group-inline .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-group-inline .form-group:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
@@ -100,6 +104,18 @@
             </div>
 
             <div class="form-group">
+                <label for="college">단과대:</label>
+                <select id="college" name="college">
+                    <option value="생공">생공</option>
+                    <option value="공과">공과</option>
+                    <option value="예공">예공</option>
+                    <option value="예술">예술</option>
+                    <option value="체육">체육</option>
+                    <option value="비공개">비공개</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="mbti">MBTI:</label>
                 <div class="form-group-half">
                     <select id="mbti_1" name="mbti_1">
@@ -127,49 +143,19 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="college">단과대:</label>
-                <select id="college" name="college">
-                    <option value="생공">생공</option>
-                    <option value="공과">공과</option>
-                    <option value="예공">예공</option>
-                    <option value="예술">예술</option>
-                    <option value="체육">체육</option>
-                    <option value="비공개">비공개</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="bedtime">취침시간:</label>
-                <input type="time" id="bedtime" name="bedtime">
-            </div>
-
-            <div class="form-group">
-                <label for="lights_off">불 끄는 시간:</label>
-                <input type="time" id="lights_off" name="lights_off">
-            </div>
-
-            <div class="form-group">
-                <label for="wakeup_time">기상시간:</label>
-                <input type="time" id="wakeup_time" name="wakeup_time">
-            </div>
-
-            <div class="form-group">
-                <label for="cleaning_habits">방청소:</label>
-                <select id="cleaning_habits" name="cleaning_habits">
-                    <option value="그때그때">그때그때</option>
-                    <option value="매일">매일</option>
-                    <option value="주기적">주기적</option>
-                    <option value="한번에">한번에</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="floor_preference">바닥:</label>
-                <select id="floor_preference" name="floor_preference">
-                    <option value="매트깔기">매트깔기</option>
-                    <option value="그냥살기">그냥살기</option>
-                </select>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="lights_off">불 끄는 시간:</label>
+                    <input type="time" id="lights_off" name="lights_off">
+                </div>
+                <div class="form-group">
+                    <label for="bedtime">취침시간:</label>
+                    <input type="time" id="bedtime" name="bedtime">
+                </div>
+                <div class="form-group">
+                    <label for="wakeup_time">기상시간:</label>
+                    <input type="time" id="wakeup_time" name="wakeup_time">
+                </div>
             </div>
 
             <div class="form-group">
@@ -219,6 +205,24 @@
             <div class="form-group">
                 <label for="drinking_habits">술 주사:</label>
                 <textarea id="drinking_habits" name="drinking_habits"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="cleaning_habits">방청소:</label>
+                <select id="cleaning_habits" name="cleaning_habits">
+                    <option value="그때그때">그때그때</option>
+                    <option value="매일">매일</option>
+                    <option value="주기적">주기적</option>
+                    <option value="한번에">한번에</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="floor_preference">바닥:</label>
+                <select id="floor_preference" name="floor_preference">
+                    <option value="매트깔기">매트깔기</option>
+                    <option value="그냥살기">그냥살기</option>
+                </select>
             </div>
 
             <div class="form-group">
