@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 1</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="dormitory">기숙사:</label>
+                <select id="dormitory" name="dormitory">
+                    <option value="기숙사 A">기숙사 A</option>
+                    <option value="기숙사 B">기숙사 B</option>
+                    <option value="기숙사 C">기숙사 C</option>
+                    <option value="기숙사 D">기숙사 D</option>
+                    <option value="기숙사 E">기숙사 E</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">성별:</label>
+                <select id="gender" name="gender">
+                    <option value="남">남</option>
+                    <option value="여">여</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="birth_year">생년:</label>
+                <select id="birth_year" name="birth_year">
+                    {% for year in range(1990, 2011) %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="student_id">학번:</label>
+                <select id="student_id" name="student_id">
+                    {% for year in range(10, 25) %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="college">단과대:</label>
+                <select id="college" name="college">
+                    <option value="생공">생공</option>
+                    <option value="공과">공과</option>
+                    <option value="예공">예공</option>
+                    <option value="예술">예술</option>
+                    <option value="체육">체육</option>
+                    <option value="비공개">비공개</option>
+                </select>
+            </div>
+            <input type="submit" value="다음">
+        </form>
+    </div>
+</body>
+</html>

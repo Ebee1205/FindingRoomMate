@@ -1,68 +1,110 @@
-from flask import Flask, render_template, request, send_file
-from PIL import Image
-import io
+from flask import Flask, render_template, request, redirect, url_for, session, send_file
+from pdf2image import convert_from_bytes
 import pdfkit
-import imgkit
+import io
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
 # PDFKit 설정
 pdfkit_config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')  # wkhtmltopdf 경로를 수정
-
-# IMGKit 설정
-imgkit_config = imgkit.config(wkhtmltoimage='/usr/local/bin/wkhtmltoimage')  # wkhtmltoimage 경로를 수정
-
-# 전역 변수로 결과 데이터를 저장
-global_result_data = {}
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    global global_result_data
-    global_result_data = {
-        '기숙사': request.form['dormitory'],
-        '성별': request.form['gender'],
-        '생년': request.form['birth_year'],
-        '학번': request.form['student_id'],
-        'MBTI': ' '.join([request.form['mbti_1'], request.form['mbti_2'], request.form['mbti_3'], request.form['mbti_4']]),
-        '단과대': request.form['college'],
-        '취침시간': request.form['bedtime'],
-        '불 끄는 시간': request.form['lights_off'],
-        '기상시간': request.form['wakeup_time'],
-        '방청소': request.form['cleaning_habits'],
-        '바닥': request.form['floor_preference'],
-        '잠버릇': request.form['sleep_habits'],
-        '잠귀': request.form['sleep_sensitivity'],
-        '아침 알람': request.form['morning_alarm'],
-        '흡연여부': request.form['smoking'],
-        '음주빈도': request.form['drinking_frequency'],
-        '술 주사': request.form['drinking_habits'],
-        '벌레': request.form['bug_handling'],
-        '원하는 룸메와의 관계': request.form['roommate_relationship'],
-        '전화통화': request.form['phone_calls'],
-        '핸드폰 소리': request.form['phone_sound'],
-        '물건공유': request.form['item_sharing'],
-        '실내취식': request.form['indoor_dining'],
-        '야식': request.form['late_night_snack'],
-        '귀가 주기': request.form['return_frequency'],
-        '기타 참고 사항': request.form['additional_notes']
-    }
-    return render_template('result.html', data=global_result_data)
+@app.route('/start', methods=['POST'])
+def start():
+    session.clear()
+    return redirect(url_for('survey_page1'))
+
+@app.route('/survey/page1', methods=['GET', 'POST'])
+def survey_page1():
+    if request.method == 'POST':
+        session['page1'] = request.form.to_dict()
+        return redirect(url_for('survey_page2'))
+    return render_template('survey_page1.html')
+
+@app.route('/survey/page2', methods=['GET', 'POST'])
+def survey_page2():
+    if request.method == 'POST':
+        session['page2'] = request.form.to_dict()
+        return redirect(url_for('survey_page3'))
+    return render_template('survey_page2.html')
+
+@app.route('/survey/page3', methods=['GET', 'POST'])
+def survey_page3():
+    if request.method == 'POST':
+        session['page3'] = request.form.to_dict()
+        return redirect(url_for('survey_page4'))
+    return render_template('survey_page3.html')
+
+@app.route('/survey/page4', methods=['GET', 'POST'])
+def survey_page4():
+    if request.method == 'POST':
+        session['page4'] = request.form.to_dict()
+        return redirect(url_for('survey_page5'))
+    return render_template('survey_page4.html')
+
+@app.route('/survey/page5', methods=['GET', 'POST'])
+def survey_page5():
+    if request.method == 'POST':
+        session['page5'] = request.form.to_dict()
+        return redirect(url_for('survey_page6'))
+    return render_template('survey_page5.html')
+
+@app.route('/survey/page6', methods=['GET', 'POST'])
+def survey_page6():
+    if request.method == 'POST':
+        session['page6'] = request.form.to_dict()
+        return redirect(url_for('survey_page7'))
+    return render_template('survey_page6.html')
+
+@app.route('/survey/page7', methods=['GET', 'POST'])
+def survey_page7():
+    if request.method == 'POST':
+        session['page7'] = request.form.to_dict()
+        return redirect(url_for('survey_page8'))
+    return render_template('survey_page7.html')
+
+@app.route('/survey/page8', methods=['GET', 'POST'])
+def survey_page8():
+    if request.method == 'POST':
+        session['page8'] = request.form.to_dict()
+        return redirect(url_for('survey_page9'))
+    return render_template('survey_page8.html')
+
+@app.route('/survey/page9', methods=['GET', 'POST'])
+def survey_page9():
+    if request.method == 'POST':
+        session['page9'] = request.form.to_dict()
+        return redirect(url_for('result'))
+    return render_template('survey_page9.html')
+
+@app.route('/result')
+def result():
+    result_data = {}
+    for i in range(1, 10):
+        result_data.update(session.get(f'page{i}', {}))
+    return render_template('result.html', data=result_data)
 
 @app.route('/download_image')
 def download_image():
-    rendered_html = render_template('result.html', data=global_result_data)
+    result_data = {}
+    for i in range(1, 10):
+        result_data.update(session.get(f'page{i}', {}))
+        
+    rendered_html = render_template('result.html', data=result_data)
     
     # HTML을 PDF로 변환
     pdf = pdfkit.from_string(rendered_html, False, configuration=pdfkit_config)
     
     # PDF를 이미지로 변환
-    img = imgkit.from_string(rendered_html, False, config=imgkit_config)
-
-    img_io = io.BytesIO(img)
+    images = convert_from_bytes(pdf)
+    
+    # 첫 번째 페이지만 변환 (단일 페이지인 경우)
+    img_io = io.BytesIO()
+    images[0].save(img_io, 'PNG')
     img_io.seek(0)
 
     return send_file(img_io, mimetype='image/png', download_name='survey_result.png', as_attachment=True)

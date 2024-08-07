@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 2</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="mbti_1">MBTI (I/E):</label>
+                <select id="mbti_1" name="mbti_1">
+                    <option value="I">I</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mbti_2">MBTI (N/S):</label>
+                <select id="mbti_2" name="mbti_2">
+                    <option value="N">N</option>
+                    <option value="S">S</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mbti_3">MBTI (F/T):</label>
+                <select id="mbti_3" name="mbti_3">
+                    <option value="F">F</option>
+                    <option value="T">T</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mbti_4">MBTI (P/J):</label>
+                <select id="mbti_4" name="mbti_4">
+                    <option value="P">P</option>
+                    <option value="J">J</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="roommate_relationship">원하는 룸메와의 관계:</label>
+                <select id="roommate_relationship" name="roommate_relationship">
+                    <option value="친함">친함</option>
+                    <option value="각자 알아서">각자 알아서</option>
+                </select>
+            </div>
+            <input type="submit" value="다음">
+        </form>
+    </div>
+</body>
+</html>

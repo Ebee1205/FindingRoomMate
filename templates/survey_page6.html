@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 6</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="return_frequency">귀가 주기:</label>
+                <select id="return_frequency" name="return_frequency">
+                    <option value="매주">매주</option>
+                    <option value="격주">격주</option>
+                    <option value="한 달 이상">한 달 이상</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone_calls">전화통화:</label>
+                <select id="phone_calls" name="phone_calls">
+                    <option value="무조건 밖">무조건 밖</option>
+                    <option value="간단 전화 가능">간단 전화 가능</option>
+                    <option value="상관없음">상관없음</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone_sound">핸드폰 소리:</label>
+                <select id="phone_sound" name="phone_sound">
+                    <option value="무조건 이어폰 착용">무조건 이어폰 착용</option>
+                    <option value="작게 유음모드 가능">작게 유음모드 가능</option>
+                    <option value="같이 노래듣기 가능">같이 노래듣기 가능</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="item_sharing">물건공유:</label>
+                <select id="item_sharing" name="item_sharing">
+                    <option value="X">X</option>
+                    <option value="허락맡고">허락맡고</option>
+                    <option value="상관없음">상관없음</option>
+                    <option value="공용물건 구비">공용물건 구비</option>
+                </select>
+            </div>
+            <input type="submit" value="다음">
+        </form>
+    </div>
+</body>
+</html>

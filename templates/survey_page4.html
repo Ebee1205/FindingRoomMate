@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 4</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="cleaning_habits">방청소:</label>
+                <select id="cleaning_habits" name="cleaning_habits">
+                    <option value="그때그때">그때그때</option>
+                    <option value="매일">매일</option>
+                    <option value="주기적">주기적</option>
+                    <option value="한번에">한번에</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="floor_preference">바닥:</label>
+                <select id="floor_preference" name="floor_preference">
+                    <option value="매트깔기">매트깔기</option>
+                    <option value="그냥살기">그냥살기</option>
+                </select>
+            </div>
+            <input type="submit" value="다음">
+        </form>
+    </div>
+</body>
+</html>

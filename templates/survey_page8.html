@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>설문조사 결과</title>
+    <title>기숙사 룸메이트 설문지 - 페이지 8</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,18 +20,20 @@
             text-align: center;
             color: #333;
         }
-        .result-item {
-            margin-bottom: 15px;
-        }
-        .result-label {
+        label {
+            display: block;
+            margin-top: 15px;
             font-weight: bold;
             color: #555;
         }
-        .result-value {
-            color: #333;
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
-        #download-btn {
-            display: block;
+        input[type="submit"] {
             width: auto;
             background-color: #4CAF50;
             color: white;
@@ -40,23 +42,22 @@
             cursor: pointer;
             margin-top: 20px;
             border-radius: 4px;
-            text-align: center;
         }
-        #download-btn:hover {
+        input[type="submit"]:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>설문조사 결과</h1>
-        {% for key, value in data.items() %}
-        <div class="result-item">
-            <span class="result-label">{{ key }}:</span>
-            <span class="result-value">{{ value }}</span>
-        </div>
-        {% endfor %}
-        <a id="download-btn" href="/download_image">이미지로 다운로드</a>
+        <h1>기숙사 룸메이트 설문지 - 페이지 8</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="additional_notes">기타 참고 사항:</label>
+                <textarea id="additional_notes" name="additional_notes"></textarea>
+            </div>
+            <input type="submit" value="다음">
+        </form>
     </div>
 </body>
 </html>

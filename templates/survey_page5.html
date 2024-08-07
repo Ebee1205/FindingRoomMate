@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 5</h1>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="smoking">흡연여부:</label>
+                <select id="smoking" name="smoking">
+                    <option value="O">O</option>
+                    <option value="X">X</option>
+                    <option value="가끔">가끔</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="drinking_frequency">음주빈도:</label>
+                <select id="drinking_frequency" name="drinking_frequency">
+                    <option value="X">X</option>
+                    <option value="자주">자주</option>
+                    <option value="때때로">때때로</option>
+                    <option value="매일">매일</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="drinking_habits">술 주사:</label>
+                <textarea id="drinking_habits" name="drinking_habits"></textarea>
+            </div>
+            <input type="submit" value="다음">
+        </form>
+    </div>
+</body>
+</html>
