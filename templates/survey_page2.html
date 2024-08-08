@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>기숙사 룸메이트 설문지 - 페이지 2</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-    </head>
+<head>
+    <title>기숙사 룸메이트 설문지 - 페이지 2</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggles = document.querySelectorAll('.toggle');
+            toggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    toggle.classList.toggle('on');
+                    var input = toggle.nextElementSibling;
+                    input.value = toggle.classList.contains('on') ? input.getAttribute('data-on') : input.getAttribute('data-off');
+                });
+            });
+        });
+    </script>
+</head>
 <body>
     <div class="container">
+        <div class="progress-container">
+            <div class="progress-step"><div class="progress-circle active"></div></div>
+            <div class="progress-step"><div class="progress-circle active"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle"></div></div>
+        </div>
         <h1>기숙사 룸메이트 설문지 - 페이지 2</h1>
         <form id="survey-form" action="{{ url_for('survey_page2') }}" method="post">
-            <div class="form-group">
-                <label for="mbti_1">MBTI (I/E):</label>
-                <select id="mbti_1" name="mbti_1">
-                    <option value="I">I</option>
-                    <option value="E">E</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="mbti_2">MBTI (N/S):</label>
-                <select id="mbti_2" name="mbti_2">
-                    <option value="N">N</option>
-                    <option value="S">S</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="mbti_3">MBTI (F/T):</label>
-                <select id="mbti_3" name="mbti_3">
-                    <option value="F">F</option>
-                    <option value="T">T</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="mbti_4">MBTI (P/J):</label>
-                <select id="mbti_4" name="mbti_4">
-                    <option value="P">P</option>
-                    <option value="J">J</option>
-                </select>
+            <div class="toggle-row">
+                <div class="toggle-group">
+                    <label class="toggle-label">I</label>
+                    <div class="toggle"></div>
+                    <label class="toggle-label">E</label>
+                    <input type="hidden" name="mbti_1" data-on="E" data-off="I" value="I">
+                </div>
+                <div class="toggle-group">
+                    <label class="toggle-label">N</label>
+                    <div class="toggle"></div>
+                    <label class="toggle-label">S</label>
+                    <input type="hidden" name="mbti_2" data-on="S" data-off="N" value="N">
+                </div>
+                <div class="toggle-group">
+                    <label class="toggle-label">F</label>
+                    <div class="toggle"></div>
+                    <label class="toggle-label">T</label>
+                    <input type="hidden" name="mbti_3" data-on="T" data-off="F" value="F">
+                </div>
+                <div class="toggle-group">
+                    <label class="toggle-label">P</label>
+                    <div class="toggle"></div>
+                    <label class="toggle-label">J</label>
+                    <input type="hidden" name="mbti_4" data-on="J" data-off="P" value="P">
+                </div>
             </div>
             <div class="form-group">
                 <label for="roommate_relationship">원하는 룸메와의 관계:</label>
