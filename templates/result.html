@@ -1,34 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>설문조사 결과</title>
+    <title>설문지 결과</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f7f7f7;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
+        #result-container {
             padding: 20px;
+            background-color: #ffffff; /* 배경을 흰색으로 설정 */
+            border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .result-item {
-            margin-bottom: 15px;
-        }
-        .result-label {
-            font-weight: bold;
-            color: #555;
-        }
-        .result-value {
-            color: #333;
+            width: 600px;
+            margin: 20px auto;
         }
         #download-btn {
             display: block;
@@ -38,9 +20,9 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin-top: 20px;
-            border-radius: 4px;
+            margin: 20px auto;
             text-align: center;
+            border-radius: 4px;
         }
         #download-btn:hover {
             background-color: #45a049;
@@ -48,15 +30,48 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>설문조사 결과</h1>
-        {% for key, value in data.items() %}
-        <div class="result-item">
-            <span class="result-label">{{ key }}:</span>
-            <span class="result-value">{{ value }}</span>
-        </div>
-        {% endfor %}
-        <a id="download-btn" href="/download_image">이미지로 다운로드</a>
+    <div id="result-container">
+        <h1>설문지 결과</h1>
+        <ul>
+            {% for key, value in data.items() %}
+            <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
     </div>
+    <button id="download-btn">이미지로 다운로드</button>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            var node = document.getElementById('result-container');
+
+            var options = {
+                bgcolor: '#ffffff', // 배경색을 흰색으로 설정
+                width: node.offsetWidth, // 컨테이너의 너비를 설정
+                height: node.offsetHeight, // 컨테이너의 높이를 설정
+                style: {
+                    'margin': '0', // 마진을 0으로 설정
+                    'padding': '20px', // 패딩을 유지
+                    'background-color': '#ffffff', // 배경색을 흰색으로 설정
+                    'border': '1px solid #ddd',
+                    'border-radius': '8px',
+                    'width': '600px'
+                }
+            };
+            
+            domtoimage.toBlob(node, options)
+                .then(function(blob) {
+                    var link = document.createElement('a');
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'survey_result.png';
+                    link.click();
+                    document.body.removeChild(link);
+                })
+                .catch(function(error) {
+                    console.error('oops, something went wrong!', error);
+                });
+        });
+    </script>
 </body>
 </html>
