@@ -1,63 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>설문지 결과</title>
+    <title>설문조사 결과</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-    <style>
-        #result-container {
-            padding: 20px;
-            background-color: #ffffff; /* 배경을 흰색으로 설정 */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 600px;
-            margin: 20px auto;
-        }
-        #download-btn {
-            display: block;
-            width: auto;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin: 20px auto;
-            text-align: center;
-            border-radius: 4px;
-        }
-        #download-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
-    <div id="result-container">
-        <h1>설문지 결과</h1>
-        <ul>
+    <div class="container">
+        <h1>설문조사 결과</h1>
+        <div id="result-container">
+            <h2>기숙사 룸메이트 설문지 결과</h2>
             {% for key, value in data.items() %}
-            <li>{{ key }}: {{ value }}</li>
+                <p><strong>{{ key }}:</strong> {{ value }}</p>
             {% endfor %}
-        </ul>
+        </div>
+        <div class="button-container">
+            <form action="{{ url_for('index') }}" method="get">
+                <button type="submit">이전</button>
+            </form>
+            <button id="download-btn">이미지로 저장</button>
+        </div>
     </div>
-    <button id="download-btn">이미지로 다운로드</button>
-
     <script>
         document.getElementById('download-btn').addEventListener('click', function() {
             var node = document.getElementById('result-container');
 
             var options = {
-                bgcolor: '#ffffff', // 배경색을 흰색으로 설정
-                width: node.offsetWidth, // 컨테이너의 너비를 설정
-                height: node.offsetHeight, // 컨테이너의 높이를 설정
+                width: node.offsetWidth,
+                height: node.offsetHeight,
                 style: {
-                    'margin': '0', // 마진을 0으로 설정
-                    'padding': '20px', // 패딩을 유지
-                    'background-color': '#ffffff', // 배경색을 흰색으로 설정
-                    'border': '1px solid #ddd',
-                    'border-radius': '8px',
-                    'width': '600px'
+                    'background-color': '#fff',
+                    'padding': '20px'
                 }
             };
-            
+
             domtoimage.toBlob(node, options)
                 .then(function(blob) {
                     var link = document.createElement('a');

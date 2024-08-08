@@ -23,7 +23,7 @@
         form {
             display: inline-block;
         }
-        input[type="submit"] {
+        button {
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -32,7 +32,7 @@
             border-radius: 4px;
             margin-top: 20px;
         }
-        input[type="submit"]:hover {
+        button:hover {
             background-color: #45a049;
         }
     </style>
@@ -40,8 +40,8 @@
 <body>
     <div class="container">
         <h1>기숙사 룸메이트 설문지</h1>
-        <form action="/start" method="post">
-            <input type="submit" value="설문 시작하기">
+        <form action="{{ url_for('start') }}" method="post">
+            <button type="submit">설문 시작하기</button>
         </form>
     </div>
 </body>

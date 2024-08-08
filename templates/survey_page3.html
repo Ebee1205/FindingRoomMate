@@ -2,56 +2,12 @@
 <html>
 <head>
     <title>기숙사 룸메이트 설문지 - 페이지 3</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f7f7f7;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-            color: #555;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            width: auto;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>기숙사 룸메이트 설문지 - 페이지 3</h1>
-        <form action="" method="post">
+        <form id="survey-form" action="{{ url_for('survey_page3') }}" method="post">
             <div class="form-group">
                 <label for="bedtime">취침시간:</label>
                 <input type="time" id="bedtime" name="bedtime">
@@ -86,8 +42,15 @@
                     <option value="상관없음">상관없음</option>
                 </select>
             </div>
-            <input type="submit" value="다음">
         </form>
+        <div class="button-container">
+            <form action="{{ url_for('survey_page2') }}" method="get">
+                <button type="submit">이전</button>
+            </form>
+            <form action="{{ url_for('survey_page4') }}" method="post">
+                <button type="submit" form="survey-form">다음</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
