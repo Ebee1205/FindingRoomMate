@@ -91,7 +91,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .toggle-group {
@@ -103,7 +103,7 @@ button:hover {
     position: relative;
     width: 60px;
     height: 30px;
-    background-color: #f71a1a;
+    background-color: #ddd;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -169,4 +169,38 @@ button:hover {
 
 .progress-circle.active {
     background-color: #007aff;
+}
+
+/* Sleep sensitivity button styles */
+.value-five-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.value-five-button {
+    width: 30px;
+    height: 30px; /* 명확하게 높이 설정 */
+    background-color: #ddd;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.value-five-button.active {
+    background-color: #007aff;
+    color: white;
+}
+
+.value-five-bar {
+    width: 30px;
+    height: 3px;
+    background-color: #ddd;
+    align-self: center; /* 바를 중앙에 정렬 */
 }

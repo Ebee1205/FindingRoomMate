@@ -3,9 +3,33 @@
 <head>
     <title>기숙사 룸메이트 설문지 - 페이지 3</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggles = document.querySelectorAll('.toggle');
+            toggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    toggle.classList.toggle('on');
+                    var input = toggle.nextElementSibling;
+                    input.value = toggle.classList.contains('on') ? input.getAttribute('data-on') : input.getAttribute('data-off');
+                });
+            });
+
+            var sensitivityButtons = document.querySelectorAll('.value-five-button');
+            sensitivityButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    sensitivityButtons.forEach(function(btn) {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    document.getElementById('sleep_sensitivity').value = button.getAttribute('data-value');
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
+        <h1>기숙사 룸메이트 설문지 - 페이지 3</h1>
         <div class="progress-container">
             <div class="progress-step"><div class="progress-circle active"></div></div>
             <div class="progress-step"><div class="progress-circle active"></div></div>
@@ -16,7 +40,6 @@
             <div class="progress-step"><div class="progress-circle"></div></div>
             <div class="progress-step"><div class="progress-circle"></div></div>
         </div>
-        <h1>기숙사 룸메이트 설문지 - 페이지 3</h1>
         <form id="survey-form" action="{{ url_for('survey_page3') }}" method="post">
             <div class="form-group">
                 <label for="bedtime">취침시간:</label>
@@ -41,7 +64,18 @@
             </div>
             <div class="form-group">
                 <label for="sleep_sensitivity">잠귀 (1-5):</label>
-                <input type="number" id="sleep_sensitivity" name="sleep_sensitivity" min="1" max="5">
+                <div class="value-five-buttons">
+                    <button type="button" class="value-five-button" data-value="1">1</button>
+                    <div class="value-five-bar"></div>
+                    <button type="button" class="value-five-button" data-value="2">2</button>
+                    <div class="value-five-bar"></div>
+                    <button type="button" class="value-five-button" data-value="3">3</button>
+                    <div class="value-five-bar"></div>
+                    <button type="button" class="value-five-button" data-value="4">4</button>
+                    <div class="value-five-bar"></div>
+                    <button type="button" class="value-five-button" data-value="5">5</button>
+                </div>
+                <input type="hidden" id="sleep_sensitivity" name="sleep_sensitivity" value="">
             </div>
             <div class="form-group">
                 <label for="morning_alarm">아침 알람:</label>
