@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>기숙사 룸메이트 설문지 - 페이지 7</title>
+    <title>기숙사 룸메이트 설문지 - 페이지 8</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -14,33 +14,26 @@
             <div class="progress-step"><div class="progress-circle active"></div></div>
             <div class="progress-step"><div class="progress-circle active"></div></div>
             <div class="progress-step"><div class="progress-circle active"></div></div>
-            <div class="progress-step"><div class="progress-circle"></div></div>
+            <div class="progress-step"><div class="progress-circle active"></div></div>
         </div>
-        <h1>기숙사 룸메이트 설문지 - 페이지 7</h1>
-        <form id="survey-form" action="{{ url_for('survey_page7') }}" method="post">
+        <h1>기숙사 룸메이트 설문지 - 페이지 8</h1>
+        <form id="survey-form" action="{{ url_for('survey_page8') }}" method="post">
             <div class="form-group">
-                <label for="phone_calls">전화통화:</label>
-                <select id="phone_calls" name="phone_calls">
-                    <option value="무조건 밖">무조건 밖</option>
-                    <option value="간단 전화 가능">간단 전화 가능</option>
-                    <option value="상관없음">상관없음</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="phone_sound">핸드폰 소리:</label>
-                <select id="phone_sound" name="phone_sound">
-                    <option value="무조건 이어폰 착용">무조건 이어폰 착용</option>
-                    <option value="작게 유음모드 가능">작게 유음모드 가능</option>
-                    <option value="같이 노래듣기 가능">같이 노래듣기 가능</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="item_sharing">물건공유:</label>
-                <select id="item_sharing" name="item_sharing">
+                <label for="indoor_dining">실내 취식:</label>
+                <select id="indoor_dining" name="indoor_dining">
                     <option value="X">X</option>
-                    <option value="허락맡고">허락맡고</option>
+                    <option value="환기잘하고 바로치우면 가능">환기잘하고 바로치우면 가능</option>
                     <option value="상관없음">상관없음</option>
-                    <option value="공용물건 구비">공용물건 구비</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="late_night_snack">야식:</label>
+                <select id="late_night_snack" name="late_night_snack">
+                    <option value="X">X</option>
+                    <option value="별로">별로</option>
+                    <option value="중간">중간</option>
+                    <option value="좋아">좋아</option>
+                    <option value="자주">자주</option>
                 </select>
             </div>
         </form>
@@ -48,7 +41,7 @@
             <form action="{{ url_for('survey_page6') }}" method="get">
                 <button type="submit">이전</button>
             </form>
-            <form action="{{ url_for('survey_page8') }}" method="post">
+            <form action="{{ url_for('result') }}" method="post">
                 <button type="submit" form="survey-form">다음</button>
             </form>
         </div>
